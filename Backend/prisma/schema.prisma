@@ -17,10 +17,11 @@ model User {
   id Int @id @default(autoincrement())
   fullName String
   userName String
-  email String
+  email String @unique
   password String
   refreshToken String?
   createdAt DateTime @default(now())
+  blogs Blogs[]
   userRole UserRole[]
 }
 
@@ -36,4 +37,13 @@ model UserRole {
   roleID Int
   user User @relation(fields: [userID], references: [id])
   role Role @relation(fields: [roleID], references: [id])
+}
+
+model Blogs{
+  id Int @id @default(autoincrement())
+  title String
+  description String @db.Text
+  ownerID Int
+  createdAt DateTime @default(now())
+  user User @relation(fields: [ownerID], references: [id])
 }
