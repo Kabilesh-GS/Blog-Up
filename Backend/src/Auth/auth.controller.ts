@@ -16,8 +16,7 @@ export class AuthController{
   }
 
   @Post('login')
-  async login(@Body() info : LoginDto, @Req() req){
-    console.log(req.user);
+  async login(@Body() info : LoginDto){
     return await this.AuthSer.login(info);
   }
 
@@ -25,7 +24,7 @@ export class AuthController{
   @Role('ADMIN')
   @Get('getusers')
   async getusers(@Req() req){
-    console.log(req)
+    console.log(req.user)
     return await this.AuthSer.getUsers();
   }
 }
