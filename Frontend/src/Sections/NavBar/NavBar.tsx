@@ -14,7 +14,7 @@ export default function NavBar() {
   return (
     <>
       {isOpen && <NavBarPopUp closeSideBar={() => setIsOpen(false)}/>}
-      <div className='flex justify-around items-center bg-gray-200 py-3 sticky top-0'>
+      <div className='flex justify-around shadow-xl items-center bg-gray-200 py-3 sticky top-0'>
         <div>
           <img src={hamburger} className='w-[30px] cursor-pointer' onClick={() => openSideBar()}/>
         </div>
