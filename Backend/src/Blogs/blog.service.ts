@@ -13,4 +13,8 @@ export class BlogService{
   async getBlogs(){
     return await this.BlogRepo.getBlogs();
   }
+
+  async getFullBlog(id : number){
+    return await this.BlogRepo.getFullBlog(id);
+  }
 }

@@ -1,4 +1,4 @@
-import { Controller,Body,Post, UseGuards, Req, Get } from "@nestjs/common";
+import { Controller,Body,Post, UseGuards, Req, Get,Param } from "@nestjs/common";
 import { BlogService } from "./blog.service";
 import { BlogDto } from "./DTO/blog.dto";
 import { JwtAuthGuard } from "src/Guards/jwt-auth.guard";
@@ -19,5 +19,10 @@ export class BlogController{
   @Get('getPosts')
   async getBlogs(){
     return await this.BlogSer.getBlogs();
+  }
+
+  @Post('fullBlog/:id')
+  async getFullBlog(@Param('id') id : number){
+    return await this.BlogSer.getFullBlog(id)
   }
 }
