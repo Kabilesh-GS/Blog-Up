@@ -69,6 +69,15 @@ export class AuthRepository{
       expiresIn : '7d'
     })
 
+    await this.prisma.user.update({
+      where : {
+        id : user.id
+      },
+      data : {
+        refreshToken : refreshToken
+      }
+    })
+
     return {
       accessToken,
       refreshToken,

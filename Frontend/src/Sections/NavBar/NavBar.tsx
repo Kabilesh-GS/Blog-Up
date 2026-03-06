@@ -2,6 +2,7 @@ import hamburger from '../../../public/menus.png'
 import logo from '../../../public/Logo transparent.png'
 import NavBarPopUp from '../../Components/NavBarPopUp/NavBarPopUp'
 import { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 export default function NavBar() {
 
@@ -25,7 +26,7 @@ export default function NavBar() {
           </div>
         </div>
         <div>
-          <button className='font-[Urbanist] bg-white px-4 py-2 rounded-full border-solid border-1 cursor-pointer border-olive-950'>Sign In</button>
+          <Link to='/signIn'><button className='font-[Urbanist] bg-white px-4 py-2 rounded-full border-solid border-1 cursor-pointer border-olive-950'>Sign In</button></Link>
         </div>
       </div>
     </>
