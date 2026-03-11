@@ -19,9 +19,7 @@ export default function BlogFull() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch(`http://localhost:3000/blog/fullBlog/${id}`);
-      console.log(data);
       const JSONData = await data.json();
-      console.log(JSONData);
       setBlog(JSONData);
     }
 

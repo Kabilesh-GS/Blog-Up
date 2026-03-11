@@ -13,10 +13,10 @@ export default function Home({ Blogs }: BlogsInter) {
             <h2 className="text-[35px] font-medium text-justify">{e.title}</h2>
             <p className="text-justify">{e.description.slice(0,200) + " ..."}</p>
             <div className="mt-3 flex justify-between">
-              <div>
+              <Link to={`/userProfile/${e.user.id}`}>
                 <span className="text-[10px] text-gray-400">By </span> 
                 <span className="text-[15px]">{e.user.userName}</span>
-              </div>
+              </Link>
               <div>
                 <span className="text-[12px]">{e.createdAt.slice(0,10).split('-').reverse().join(' ')}</span>
               </div>
