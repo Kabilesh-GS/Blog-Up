@@ -1,5 +1,9 @@
-export default function Profile() {
+type Prop = {
+  email : string
+}
+
+export default function Profile({email} : Prop) {
   return (
-    <div>Profile</div>
+      email ? <div>{email}</div> : <p>login</p>
   )
 }

@@ -12,6 +12,8 @@ export default function NavBar() {
     setIsOpen(true);
   }
 
+  let Token = localStorage.getItem('token');
+
   return (
     <>
       {isOpen && <NavBarPopUp closeSideBar={() => setIsOpen(false)}/>}
@@ -26,7 +28,12 @@ export default function NavBar() {
           </Link>
         </div>
         <div>
-          <Link to='/signUp'><button className='font-[Urbanist] bg-white px-4 py-2 rounded-full border-solid border-1 cursor-pointer border-olive-950'>Sign Up</button></Link>
+          {Token ? 
+            <Link to='/profile'><h1>{}</h1></Link>
+          :
+            <Link to='/signIn'><button className='font-[Urbanist] bg-white px-4 py-2 rounded-full border-solid border-1 cursor-pointer border-olive-950'>Sign In</button></Link>
+          }
+          
         </div>
       </div>
     </>
