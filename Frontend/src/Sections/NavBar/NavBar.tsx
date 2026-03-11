@@ -20,13 +20,13 @@ export default function NavBar() {
           <img src={hamburger} className='w-[30px] cursor-pointer' onClick={() => openSideBar()}/>
         </div>
         <div>
-          <div className='flex justify-center items-center cursor-default'>
+          <Link to='/' className='flex justify-center items-center cursor-default'>
             <img src={logo} className='w-[50px]'/>
             <p className='text-[20px] font-[Urbanist] font-medium'>BlogUp</p>
-          </div>
+          </Link>
         </div>
         <div>
-          <Link to='/signIn'><button className='font-[Urbanist] bg-white px-4 py-2 rounded-full border-solid border-1 cursor-pointer border-olive-950'>Sign In</button></Link>
+          <Link to='/signUp'><button className='font-[Urbanist] bg-white px-4 py-2 rounded-full border-solid border-1 cursor-pointer border-olive-950'>Sign Up</button></Link>
         </div>
       </div>
     </>

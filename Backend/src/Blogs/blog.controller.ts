@@ -21,7 +21,7 @@ export class BlogController{
     return await this.BlogSer.getBlogs();
   }
 
-  @Post('fullBlog/:id')
+  @Get('fullBlog/:id')
   async getFullBlog(@Param('id') id : number){
     return await this.BlogSer.getFullBlog(id)
   }

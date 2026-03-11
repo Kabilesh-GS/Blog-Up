@@ -5,7 +5,9 @@ import NavBar from './Sections/NavBar/NavBar'
 import Home from './Sections/Home/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Profile from './Sections/Profile/Profile';
-import Signin from './Sections/Signin/Signin';
+import Signup from './Sections/SignUp/Signup';
+import BlogFull from './Sections/BlogFull/BlogFull';
+import SignIn from './Sections/SignIn/SignIn';
 
 function App() {
 
@@ -30,7 +32,9 @@ function App() {
         <Routes>
           <Route path="/" element={ loading ? <Loading /> : <Home Blogs={blogs}/> }/>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/signIn" element={<Signin/>} />
+          <Route path="/signUp" element={<Signup/>} />
+          <Route path="/blog/:id" element={<BlogFull />} />
+          <Route path='/signIn' element={<SignIn />} />
         </Routes>
     </BrowserRouter>
   )
