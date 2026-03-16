@@ -37,7 +37,7 @@ function App() {
           <Route path="/signUp" element={<Signup/>} />
           <Route path="/blog/:id" element={<BlogFull />} />
           <Route path='/signIn' element={<SignIn />} />
-          <Route path='userProfile/:id' element={<PostProfile token={token}/>} />
+          <Route path='userProfile/:id' element={<PostProfile/>} />
         </Routes>
     </BrowserRouter>
   )

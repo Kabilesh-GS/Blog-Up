@@ -14,4 +14,9 @@ export class ProfileController{
   async getUser(@Param('id') id : number){
     return await this.profileServ.getUser(id);
   }
+
+  @Get('getUserPost/:id')
+  async getUserPost(@Param('id') id : number){
+    return await this.profileServ.getUserPosts(id);
+  }
 }

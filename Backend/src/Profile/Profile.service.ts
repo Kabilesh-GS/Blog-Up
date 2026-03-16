@@ -8,4 +8,8 @@ export class ProfileService{
   async getUser(id : number){
     return await this.profileRepo.getUser(id);
   }
+
+  async getUserPosts(id : number){
+    return await this.profileRepo.getUserPosts(id);
+  }
 }

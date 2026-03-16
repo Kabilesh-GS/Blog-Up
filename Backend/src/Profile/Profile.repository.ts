@@ -14,4 +14,16 @@ export class ProfileRepo{
 
     return { email : user?.email, username : user?.userName, name : user?.fullName, createdAt : user?.createdAt }
   }
+
+  async getUserPosts(id : number){
+    const posts = await this.prisma.blogs.findMany({
+      where : {
+        user : {
+          id : Number(id)
+        }
+      }
+    })
+
+    return posts;
+  }
 }
