@@ -19,8 +19,21 @@ export class BlogRepository{
   }
 
   async getBlogs(){
-    const blog = await this.prisma.blogs.findMany();
+    return await this.prisma.blogs.findMany({
+      include :{
+        user : true
+      }
+    });
+  }
 
-    return { blog }
+  async getFullBlog(BlogId : number){
+    return await this.prisma.blogs.findUnique({
+      where : {
+        id : Number(BlogId)
+      },
+      include : {
+        user : true
+      }
+    })
   }
 }

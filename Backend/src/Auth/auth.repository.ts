@@ -61,12 +61,21 @@ export class AuthRepository{
 
     const accessToken = await this.jwt.signAsync(payload, {
       secret : process.env.JWT_TOKEN,
-      expiresIn : '15m'
+      expiresIn : '3d'
     })
 
     const refreshToken = await this.jwt.signAsync(payload, {
       secret : process.env.JWT_TOKEN,
       expiresIn : '7d'
+    })
+
+    await this.prisma.user.update({
+      where : {
+        id : user.id
+      },
+      data : {
+        refreshToken : refreshToken
+      }
     })
 
     return {
