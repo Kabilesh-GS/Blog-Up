@@ -4,7 +4,12 @@ import NavBarPopUp from '../../Components/NavBarPopUp/NavBarPopUp'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 
-export default function NavBar() {
+type Prop = {
+  token: string | null | undefined;
+  setToken : any
+}
+
+export default function NavBar({ token, setToken }: Prop) {
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -12,11 +17,10 @@ export default function NavBar() {
     setIsOpen(true);
   }
 
-  let Token = localStorage.getItem('token');
-
+  const hasToken = Boolean(token ?? localStorage.getItem('token'));
   return (
     <>
-      {isOpen && <NavBarPopUp closeSideBar={() => setIsOpen(false)}/>}
+      {isOpen && <NavBarPopUp closeSideBar={() => setIsOpen(false)} token={token} setToken={setToken}/>}
       <div className='flex justify-around shadow-xl items-center bg-gray-200 py-3 sticky top-0'>
         <div>
           <img src={hamburger} className='w-[30px] cursor-pointer' onClick={() => openSideBar()}/>
@@ -28,8 +32,8 @@ export default function NavBar() {
           </Link>
         </div>
         <div>
-          {Token ? 
-            <Link to='/profile'><h1>{}</h1></Link>
+          {hasToken ? 
+            <Link to='/profile'><h1>Profile</h1></Link>
           :
             <Link to='/signIn'><button className='font-[Urbanist] bg-white px-4 py-2 rounded-full border-solid border-1 cursor-pointer border-olive-950'>Sign In</button></Link>
           }

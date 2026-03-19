@@ -14,6 +14,15 @@ export class AuthRepository{
 
     try{
       this.logger.log('Hit on register (repository)');
+      const existingUser = await this.prisma.user.findFirst({
+        where : {
+          userName : info.userName
+        }
+      })
+
+      if(info.userName == existingUser?.userName) throw new BadRequestException("User Name already Exist")
+      if(info.email == existingUser?.email) throw new BadRequestException("email already Exist")
+
       const hashed = await bcrypt.hash(info.password,10);
 
       const user = await this.prisma.user.create({
@@ -38,6 +47,7 @@ export class AuthRepository{
     }
     catch(e){
       this.logger.error('Error' + e);
+      return {e};
     }
   }
 
@@ -96,6 +106,7 @@ export class AuthRepository{
     }
     catch(e){
       this.logger.error('Error' + e);
+      return e;
     }
   }
 
@@ -108,6 +119,7 @@ export class AuthRepository{
     }
     catch(e){
       this.logger.error('Error' + e);
+      return e;
     }
   }
 }

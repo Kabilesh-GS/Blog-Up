@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 
-export default function SignIn() {
+type Prop = {
+  setToken : any
+}
+
+export default function SignIn({setToken} : Prop) {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
@@ -22,6 +26,7 @@ export default function SignIn() {
 
     const returnData = await data.json()
     localStorage.setItem('token', returnData.accessToken);
+    setToken(returnData?.accessToken);
     navigate("/");
     console.log(returnData);  
   }
@@ -40,7 +45,7 @@ export default function SignIn() {
           </div>
           <button type="submit" className="bg-black text-white py-3 rounded-full cursor-pointer">Sign In</button>
         </form>
-        <p className='text-center text-sm mt-8'>Have an account? <Link to='/signUp' className='text-red-400'>Sign Up</Link></p>
+        <p className='text-center text-sm mt-8'>Don't have an account? <Link to='/signUp' className='text-red-400'>Sign Up</Link></p>
       </div>
     </div>
   )

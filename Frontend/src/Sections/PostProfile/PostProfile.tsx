@@ -3,7 +3,6 @@ import { useParams} from 'react-router-dom';
 import Loading from '../../Components/Loading/Loading';
 import { Link } from 'react-router-dom';
 
-
 type User = {
   name : string;
   email : string;
@@ -12,7 +11,7 @@ type User = {
 
 export default function PostProfile() {
 
-  const { id } = useParams();
+  const { userName } = useParams();
   const [userDetail,setUserDetail] = useState<User | null>(null);
   const [userBlogs,setUserBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -20,8 +19,8 @@ export default function PostProfile() {
   useEffect(() => {
     async function getDetails(){
       setLoading(true);
-      const user = await fetch(`http://localhost:3000/getUser/${id}`)
-      const blogs = await fetch(`http://localhost:3000/getUserPost/${id}`)
+      const user = await fetch(`http://localhost:3000/getUser/${userName}`)
+      const blogs = await fetch(`http://localhost:3000/getUserPost/${userName}`)
       const userData = await user.json();
       const blogsData = await blogs.json();
       setUserDetail(userData);
@@ -30,7 +29,7 @@ export default function PostProfile() {
     }
 
     getDetails();
-  },[id])
+  },[userName])
 
   return (
     <div>
@@ -45,12 +44,12 @@ export default function PostProfile() {
           </div>
           <div className='flex justify-center mt-5'>
             {userBlogs.map((e: any) => ( 
-              <Link to={`/blog/${e.id}`} key={e.id} className="w-[65%] hover:bg-gray-100 hover:shadow-xl px-4 py-4 rounded-2xl mb-2 cursor-pointer">
+              <Link to={`/blog/${e?.id}`} key={e?.id} className="w-[65%] hover:bg-gray-100 hover:shadow-xl px-4 py-4 rounded-2xl mb-2 cursor-pointer">
                 <h2 className="text-[25px] font-medium text-justify">{e.title}</h2>
-                <p className="text-justify">{e.description.slice(0,200) + " ..."}</p>
+                <p className="text-justify">{e?.description?.slice(0,200) + " ..."}</p>
                 <div className="mt-3 flex justify-between">
                   <div>
-                    <span className="text-[10px]">{e.createdAt.slice(0,10).split('-').reverse().join(' ')}</span>
+                    <span className="text-[10px]">{e?.createdAt?.slice(0,10)?.split('-')?.reverse()?.join(' ')}</span>
                   </div>
                 </div>
               </Link>

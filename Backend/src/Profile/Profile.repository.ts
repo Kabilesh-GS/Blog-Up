@@ -6,12 +6,12 @@ export class ProfileRepo{
   constructor(private prisma : PrismaService){}
   private readonly logger = new Logger(ProfileRepo.name);
 
-  async getUser(id : number) {
+  async getUser(userName : string) {
     try{
       this.logger.log('Hit on Get user by ID (Repository)');
       const user = await this.prisma.user.findUnique({
         where : {
-          id : Number(id)
+          userName : userName
         }
       })
 
@@ -22,13 +22,13 @@ export class ProfileRepo{
     }
   }
 
-  async getUserPosts(id : number){
+  async getUserPosts(userName : string){
     try{
       this.logger.log("Hit on Get users's post (Repository)");
       const posts = await this.prisma.blogs.findMany({
         where : {
           user : {
-            id : Number(id)
+            userName : userName
           }
         }
       })
