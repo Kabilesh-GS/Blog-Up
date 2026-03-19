@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { decodeJWT, isTokenExpired, type MyJwtPayload } from "../../Utils/auth";
 
 type Prop = {
-  token: string | null;
+  token: string | null | undefined;
 };
 
 export default function Profile({ token }: Prop) {
@@ -25,5 +25,5 @@ export default function Profile({ token }: Prop) {
     setDecoded(payload);
   }, [token, navigate]);
 
-  return <>{decoded?.email}</>;
+  return <>{decoded?.id}</>;
 }

@@ -6,13 +6,13 @@ export class ProfileService{
   constructor(private profileRepo : ProfileRepo){}
   private readonly logger = new Logger(ProfileService.name);
 
-  async getUser(id : number){
+  async getUser(userName : string){
     this.logger.log('Hit on Get user by ID (service)');
-    return await this.profileRepo.getUser(id);
+    return await this.profileRepo.getUser(userName);
   }
 
-  async getUserPosts(id : number){
+  async getUserPosts(userName : string){
     this.logger.log("Hit on Get users's post (service)");
-    return await this.profileRepo.getUserPosts(id);
+    return await this.profileRepo.getUserPosts(userName);
   }
 }

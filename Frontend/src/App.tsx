@@ -7,37 +7,38 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Profile from './Sections/Profile/Profile';
 import Signup from './Sections/SignUp/Signup';
 import BlogFull from './Sections/BlogFull/BlogFull';
-import SignIn from './Sections/SignIn/SignIn';
+import SignIn from './Sections/Signin/Signin';
 import PostProfile from './Sections/PostProfile/PostProfile';
 
 function App() {
-
-  const token = localStorage.getItem('token')
-  const[blogs, setBlogs] = useState([]);
-  const[loading, setLoading] = useState(false);
+  const [token, setToken] = useState<string | null | undefined>();
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const localToken = localStorage.getItem("token");
+    setToken(localToken);
     const fetchFun = async () => {
       setLoading(true);
-      const data = await fetch('http://localhost:3000/blog/getPosts')
+      const data = await fetch("http://localhost:3000/blog/getPosts");
       const JSONData = await data.json();
       setBlogs(JSONData);
       setLoading(false);
     }
 
     fetchFun();
-  },[])
+  },[token])
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar token={token} setToken={setToken}/>
         <Routes>
           <Route path="/" element={ loading ? <Loading /> : <Home Blogs={blogs}/> }/>
           <Route path="/profile" element={<Profile token={token} />} />
           <Route path="/signUp" element={<Signup/>} />
           <Route path="/blog/:id" element={<BlogFull />} />
-          <Route path='/signIn' element={<SignIn />} />
-          <Route path='userProfile/:id' element={<PostProfile/>} />
+          <Route path='/signIn' element={<SignIn setToken={setToken}/>} />
+          <Route path='userProfile/:userName' element={<PostProfile/>} />
         </Routes>
     </BrowserRouter>
   )
