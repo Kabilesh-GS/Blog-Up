@@ -8,25 +8,25 @@ import { Role } from "src/Guards/role.decorator";
 @Controller('blog')
 export class BlogController{
   constructor(private BlogSer : BlogService){}
-  private readonly logger = new Logger(BlogService.name);
+  private readonly logger = new Logger(BlogController.name);
 
   @UseGuards(JwtAuthGuard,RolesGuard)
   @Role('USER','ADMIN')
   @Post('addPost')
   async addBlog(@Body() BlogDTO : BlogDto , @Req() req){
-    this.logger.log('Hit on add Blog');
+    this.logger.log('Hit on add Blog (controller)');
     return await this.BlogSer.addBlog(BlogDTO, req.user.id);
   }
 
   @Get('getPosts')
   async getBlogs(){
-    this.logger.log('Hit on get Blog');
+    this.logger.log('Hit on get Blog (controller)');
     return await this.BlogSer.getBlogs();
   }
 
   @Get('fullBlog/:id')
   async getFullBlog(@Param('id') id : number){
-    this.logger.log('Hit on get Blog by ID');
+    this.logger.log('Hit on get Blog by ID (Controller)');
     return await this.BlogSer.getFullBlog(id);
   }
 }
