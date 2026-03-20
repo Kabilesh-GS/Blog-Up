@@ -21,17 +21,23 @@ export function isTokenExpired(exp: number): boolean {
   return Date.now() / 1000 > exp;
 }
 
-export async function userdetails(id: number, token: string) {
-  const response = await fetch(`http://localhost:3000/getUser/${id}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export async function getUsers(userName : string | undefined){
+  const response = await fetch(`http://localhost:3000/getUser/${userName}`)
+  const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch user details");
-  }
+  return data;
+}
 
-  return response.json();
+export async function getUserBlogs(userName : string | undefined){
+  const response = await fetch(`http://localhost:3000/getUserPost/${userName}`)
+  const data = await response.json();
+
+  return data;
+}
+
+export async function getBlog(id : any){
+  const response = await fetch(`http://localhost:3000/blog/fullBlog/${id}`)
+  const data = await response.json();
+
+  return data;
 }

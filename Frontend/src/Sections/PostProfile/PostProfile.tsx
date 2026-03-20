@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams} from 'react-router-dom';
 import Loading from '../../Components/Loading/Loading';
 import { Link } from 'react-router-dom';
+import { getUsers,getUserBlogs } from '../../Utils/auth';
 
 type User = {
   name : string;
@@ -19,12 +20,8 @@ export default function PostProfile() {
   useEffect(() => {
     async function getDetails(){
       setLoading(true);
-      const user = await fetch(`http://localhost:3000/getUser/${userName}`)
-      const blogs = await fetch(`http://localhost:3000/getUserPost/${userName}`)
-      const userData = await user.json();
-      const blogsData = await blogs.json();
-      setUserDetail(userData);
-      setUserBlogs(blogsData);
+      setUserDetail(await getUsers(userName));
+      setUserBlogs(await getUserBlogs(userName));
       setLoading(false)
     }
 

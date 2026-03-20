@@ -9,6 +9,7 @@ import Signup from './Sections/SignUp/Signup';
 import BlogFull from './Sections/BlogFull/BlogFull';
 import SignIn from './Sections/Signin/Signin';
 import PostProfile from './Sections/PostProfile/PostProfile';
+import Write from './Sections/Write/Write';
 
 function App() {
   const [token, setToken] = useState<string | null | undefined>();
@@ -38,7 +39,8 @@ function App() {
           <Route path="/signUp" element={<Signup/>} />
           <Route path="/blog/:id" element={<BlogFull />} />
           <Route path='/signIn' element={<SignIn setToken={setToken}/>} />
-          <Route path='userProfile/:userName' element={<PostProfile/>} />
+          <Route path='/userProfile/:userName' element={<PostProfile/>} />
+          <Route path='/write' element={<Write token={token}/>}/>
         </Routes>
     </BrowserRouter>
   )
