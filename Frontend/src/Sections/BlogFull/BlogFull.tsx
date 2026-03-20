@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect,useState } from 'react';
+import { getBlog } from '../../Utils/auth';
 
 type Blog = {
   id: number;
@@ -18,9 +19,7 @@ export default function BlogFull() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch(`http://localhost:3000/blog/fullBlog/${id}`);
-      const JSONData = await data.json();
-      setBlog(JSONData);
+      setBlog(await getBlog(id));
     }
 
     fetchData();

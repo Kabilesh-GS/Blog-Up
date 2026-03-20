@@ -2,6 +2,7 @@ import hamburger from '../../../public/menus.png'
 import logo from '../../../public/Logo transparent.png'
 import NavBarPopUp from '../../Components/NavBarPopUp/NavBarPopUp'
 import { useState } from 'react'
+import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 type Prop = {
@@ -32,12 +33,7 @@ export default function NavBar({ token, setToken }: Prop) {
           </Link>
         </div>
         <div>
-          {hasToken ? 
-            <Link to='/profile'><h1>Profile</h1></Link>
-          :
-            <Link to='/signIn'><button className='font-[Urbanist] bg-white px-4 py-2 rounded-full border-solid border-1 cursor-pointer border-olive-950'>Sign In</button></Link>
-          }
-          
+          { hasToken ? <Link to='/profile'><h1><FaRegUserCircle className='text-3xl'/></h1></Link> : <Link to='/signIn'><button className='font-[Urbanist] bg-white px-4 py-2 rounded-full border-solid border-1 cursor-pointer border-olive-950'>Sign In</button></Link> }
         </div>
       </div>
     </>
