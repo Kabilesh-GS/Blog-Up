@@ -28,7 +28,6 @@ export default function SignIn({setToken} : Prop) {
     localStorage.setItem('token', returnData.accessToken);
     setToken(returnData?.accessToken);
     navigate("/");
-    console.log(returnData);  
   }
 
   return (

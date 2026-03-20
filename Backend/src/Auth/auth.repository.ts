@@ -74,7 +74,7 @@ export class AuthRepository{
       const role = user.userRole.map((u) => { return u.role.role})
       const payload = {
         id : user.id,
-        email : user.email,
+        userName : user.userName,
         role : role
       }
 
