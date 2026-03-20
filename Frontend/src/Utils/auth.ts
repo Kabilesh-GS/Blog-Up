@@ -41,3 +41,19 @@ export async function getBlog(id : any){
 
   return data;
 }
+
+export async function addFav(userID : any, postID : any, token : any){
+  try{
+    await fetch(`http://localhost:3000/blog/addFav/${userID}/${postID}`,{
+      method : 'POST',
+      headers : {
+        'Authorization' : `Bearer ${token}`
+        }
+    })
+
+    return "user added"
+  }
+  catch(err){
+    return err;
+  }
+}

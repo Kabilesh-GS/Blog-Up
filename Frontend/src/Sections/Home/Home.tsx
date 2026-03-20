@@ -15,7 +15,7 @@ export default function Home({ Blogs }: BlogsInter) {
             <div className="mt-3 flex justify-between">
               <Link to={`/profile/${e.user.userName}`}>
                 <span className="text-[10px] text-gray-400">By </span> 
-                <span className="text-[15px]">{e.user.userName}</span>
+                <span className="text-[15px] hover:underline">{e.user.userName}</span>
               </Link>
               <div>
                 <span className="text-[12px]">{e.createdAt.slice(0,10).split('-').reverse().join(' ')}</span>

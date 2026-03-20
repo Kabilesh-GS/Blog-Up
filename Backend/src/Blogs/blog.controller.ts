@@ -29,4 +29,17 @@ export class BlogController{
     this.logger.log('Hit on get Blog by ID (Controller)');
     return await this.BlogSer.getFullBlog(id);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('addFav/:userID/:blogID')
+  async addFavoutite(@Param('userID') userID : number, @Param('blogID') blogID : number){
+    this.logger.log('Hit on add Fav (service)');
+    return await this.BlogSer.addFavourite(userID,blogID);
+  }
+
+  @Get('getFav/:id')
+  async getFav(@Param('id') id : number){
+    this.logger.log('Hit on get fav (controller)')
+    return await this.BlogSer.getFav(id);
+  }
 }

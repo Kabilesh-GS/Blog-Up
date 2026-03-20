@@ -37,9 +37,9 @@ function App() {
           <Route path="/" element={ loading ? <Loading /> : <Home Blogs={blogs}/> }/>
           {/* <Route path="/profile" element={<Profile token={token} />} /> */}
           <Route path="/signUp" element={<Signup/>} />
-          <Route path="/blog/:id" element={<BlogFull />} />
+          <Route path="/blog/:id" element={<BlogFull token={token}/>} />
           <Route path='/signIn' element={<SignIn setToken={setToken}/>} />
-          <Route path='/profile/:userName' element={<PostProfile/>} />
+          <Route path='/profile/:userName' element={<PostProfile token={token}/>} />
           <Route path='/write' element={<Write token={token}/>}/>
         </Routes>
     </BrowserRouter>

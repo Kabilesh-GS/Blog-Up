@@ -21,4 +21,14 @@ export class BlogService{
     this.logger.log('Hit on get Blog by ID (service)');
     return await this.BlogRepo.getFullBlog(id);
   }
+
+  async addFavourite(userID : number, blogID : number){
+    this.logger.log('Hit on add Fav (service)');
+    return await this.BlogRepo.addFavourite(userID, blogID);
+  }
+
+  async getFav(id : number){
+    this.logger.log('Hit on get fav (service)')
+    return await this.BlogRepo.getFav(id);
+  }
 }

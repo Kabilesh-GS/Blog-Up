@@ -1,6 +1,7 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { PrismaService } from "src/Prisma/prisma.service";
 import { BlogDto } from "./DTO/blog.dto";
+import { useContainer } from "class-validator";
 
 @Injectable()
 export class BlogRepository{
@@ -49,6 +50,40 @@ export class BlogRepository{
           user : true
         }
       })
+    }
+    catch(e){
+      this.logger.error('Error' + e)
+    }
+  }
+
+  async addFavourite(userID : number,blogID : number){
+    try{
+      const fav = await this.prisma.favourite.create({
+        data : {
+           userID : Number(userID),
+           blogID : Number(blogID)
+        }
+      })
+
+      return fav;
+    }
+    catch(e){
+      this.logger.error('Error' + e)
+    }
+  }
+
+  async getFav(id : number){
+    try{
+      const data = await this.prisma.favourite.findMany({
+        where : {
+          userID : Number(id)
+        },
+        include : {
+          blogs : true
+        }
+      })
+
+      return data;
     }
     catch(e){
       this.logger.error('Error' + e)
