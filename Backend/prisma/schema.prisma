@@ -21,7 +21,9 @@ model User {
   password String
   refreshToken String?
   createdAt DateTime @default(now())
+
   blogs Blogs[]
+  favourite Favourite[]
   userRole UserRole[]
 }
 
@@ -46,4 +48,16 @@ model Blogs{
   ownerID Int
   createdAt DateTime @default(now())
   user User @relation(fields: [ownerID], references: [id])
+
+  favourites Favourite[]
+}
+
+model Favourite{
+  id Int @id @default(autoincrement())
+  userID Int
+  blogID Int
+
+  user User @relation(fields: [userID], references: [id])
+  blogs Blogs @relation(fields:[blogID], references: [id])
+  @@unique([userID, blogID])
 }

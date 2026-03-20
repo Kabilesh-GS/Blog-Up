@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import { decodeJWT } from '../../Utils/auth';
 
 type Prop = {
-  token: string | null | undefined;
-  setToken : any
+  token: any;
+  setToken : Function
 }
 
 export default function NavBar({ token, setToken }: Prop) {
