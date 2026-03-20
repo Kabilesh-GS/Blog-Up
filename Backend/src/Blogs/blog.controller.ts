@@ -30,6 +30,7 @@ export class BlogController{
     return await this.BlogSer.getFullBlog(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('addFav/:userID/:blogID')
   async addFavoutite(@Param('userID') userID : number, @Param('blogID') blogID : number){
     this.logger.log('Hit on add Fav (service)');
