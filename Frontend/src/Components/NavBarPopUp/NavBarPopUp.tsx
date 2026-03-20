@@ -2,7 +2,7 @@ import logo from '../../../public/Logo transparent.png'
 import { TiHome } from "react-icons/ti";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaCircleUser } from "react-icons/fa6";
-import { TbLogout } from "react-icons/tb";
+import { TbLogin, TbLogout } from "react-icons/tb";
 import { Link } from 'react-router-dom';
 import { decodeJWT } from '../../Utils/auth';
 import { useNavigate } from 'react-router-dom';
@@ -41,9 +41,15 @@ export default function NavBarPopUp({ closeSideBar, token, setToken }: Props) {
             <li className='cursor-pointer'>
               <Link to="/write" className='flex content-center items-center gap-5.5 font-[Urbanist] hover:bg-gray-500 p-4 rounded-2xl hover:text-white hover:shadow-xl'><FaPencilAlt className='text-[25px]'/>Write</Link>
             </li>
-            <li className='cursor-pointer'>
-              <Link to="/profile" className='flex content-center items-center gap-5.5 font-[Urbanist] hover:bg-gray-500 p-4 rounded-2xl hover:text-white hover:shadow-xl'><FaCircleUser className='text-[25px]'/>Profile</Link>
-            </li>
+            {
+              token ? 
+              <li className='cursor-pointer'>
+                <Link to={`/profile/${decoded?.userName}`} className='flex content-center items-center gap-5.5 font-[Urbanist] hover:bg-gray-500 p-4 rounded-2xl hover:text-white hover:shadow-xl'><FaCircleUser className='text-[25px]'/>Profile</Link>
+              </li> : 
+              <li className='cursor-pointer'>
+                <Link to={`/signin`} className='flex content-center items-center gap-5.5 font-[Urbanist] hover:bg-gray-500 p-4 rounded-2xl hover:text-white hover:shadow-xl'><TbLogin className='text-[25px] rotate-'/>Sign In</Link>
+              </li>
+            }
           </ul>
         </div>
         {

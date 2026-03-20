@@ -1,9 +1,10 @@
 import hamburger from '../../../public/menus.png'
 import logo from '../../../public/Logo transparent.png'
 import NavBarPopUp from '../../Components/NavBarPopUp/NavBarPopUp'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { decodeJWT } from '../../Utils/auth';
 
 type Prop = {
   token: string | null | undefined;
@@ -13,10 +14,18 @@ type Prop = {
 export default function NavBar({ token, setToken }: Prop) {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [decoded, setDecoded] = useState<any>()
 
   const openSideBar = () =>{
     setIsOpen(true);
   }
+
+  useEffect(() => {
+    async function fetchDecode(){
+      setDecoded(await decodeJWT(token))
+    }
+    fetchDecode()
+  },[token])
 
   const hasToken = Boolean(token ?? localStorage.getItem('token'));
   return (
@@ -33,7 +42,7 @@ export default function NavBar({ token, setToken }: Prop) {
           </Link>
         </div>
         <div>
-          { hasToken ? <Link to='/profile'><h1><FaRegUserCircle className='text-3xl'/></h1></Link> : <Link to='/signIn'><button className='font-[Urbanist] bg-white px-4 py-2 rounded-full border-solid border-1 cursor-pointer border-olive-950'>Sign In</button></Link> }
+          { hasToken ? <Link to={`/profile/${decoded?.userName}`}><h1><FaRegUserCircle className='text-3xl'/></h1></Link> : <Link to='/signIn'><button className='font-[Urbanist] bg-white px-4 py-2 rounded-full border-solid border-1 cursor-pointer border-olive-950'>Sign In</button></Link> }
         </div>
       </div>
     </>
