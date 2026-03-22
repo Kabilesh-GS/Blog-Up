@@ -3,9 +3,8 @@ import { TiHome } from "react-icons/ti";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaCircleUser } from "react-icons/fa6";
 import { TbLogin, TbLogout } from "react-icons/tb";
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate } from 'react-router-dom';
 import { decodeJWT } from '../../Utils/auth';
-import { useNavigate } from 'react-router-dom';
 
 type Props = {
   closeSideBar: () => void;
@@ -27,7 +26,7 @@ export default function NavBarPopUp({ closeSideBar, token, setToken }: Props) {
   }
 
   return (
-    <div className="bg-gray-300 shadow-2xl w-[300px] h-full absolute z-20">
+    <div className="bg-gray-300 shadow-2xl w-[300px] h-full fixed top-0 z-20">
       <div className='flex justify-between items-center w-full px-3 py-3'>
         <img src={logo} className='w-[50px]'/>
         <p  onClick={closeSideBar} className="bg-white py-1 px-3 cursor-pointer rounded-full">X</p>
