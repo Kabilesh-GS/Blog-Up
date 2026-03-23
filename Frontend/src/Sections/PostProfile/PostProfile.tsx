@@ -59,7 +59,7 @@ export default function PostProfile({token} : any) {
           <div className='flex justify-center mt-5'>
             <div className='w-[65%]'>
             {favBtn ? 
-              <button onClick={handleFav} className={`${openFav ? 'bg-gray-200' : ''} flex items-center gap-3 p-4 rounded-xl`}>
+              <button onClick={handleFav} className={`${openFav ? 'bg-gray-200' : ''} flex items-center gap-3 p-4 cursor-pointer rounded-xl hover:bg-gray-100`}>
                 <FaHeart />
                 <p>Favourites</p>
               </button> 
