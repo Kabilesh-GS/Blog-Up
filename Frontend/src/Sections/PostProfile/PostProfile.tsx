@@ -82,7 +82,7 @@ export default function PostProfile({token} : any) {
                 </Link>
               ))}
             </div> : 
-            <div className='flex justify-center mt-5'>
+            <div className='flex flex-col justify-center items-center mt-5'>
               {userBlogs.map((e: any) => ( 
                 <Link to={`/blog/${e?.id}`} key={e?.id} className="w-[65%] hover:bg-gray-100 hover:shadow-xl p-4 rounded-2xl mb-2 cursor-pointer">
                   <h2 className="text-[25px] font-medium text-justify">{e.title}</h2>
