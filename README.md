@@ -15,7 +15,7 @@ A modern blogging platform. Create, share, and discover inspiring stories.
 2. Install dependencies: `npm install`
 3. Create a `.env` file with required environment variables
 4. Run `npx prisma migrate deploy`
-5. Run `nox prisma generate`
+5. Run `npx prisma generate`
 6. Start the server: `npm run start`
 
 The backend will run on `http://localhost:3000`
