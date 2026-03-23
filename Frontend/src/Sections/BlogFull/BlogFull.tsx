@@ -52,10 +52,10 @@ export default function BlogFull({token} : prop) {
             <div>{(blog?.createdAt)?.slice(0,10).split('-').reverse().join(' ')}</div>
           </div>
           <div>
-            <h1 className='font-medium text-5xl' style={{ whiteSpace: "pre-line" }}>{blog?.title}</h1>
-            <p className='mt-4'>{blog?.description}</p>
+            <h1 className='font-medium text-5xl'>{blog?.title}</h1>
+            <p className='mt-4 text-lg mt-6' style={{ whiteSpace: "pre-line" }}>{blog?.description?.replace(/\\n/g, "\n")}</p>
           </div>
-          <div className='mt-15'><FaRegHeart className='cursor-pointer' onClick={() => handleFav()}/></div>
+          <div className='mt-15 mb-5'><FaRegHeart className='cursor-pointer' onClick={() => handleFav()}/></div>
         </div>
       </div>
     </div>

@@ -34,11 +34,11 @@ export default function SignIn({setToken} : Prop) {
     <div className="flex justify-center mt-20 font-[Urbanist]">
       <div className="w-[30%]">
         <form className="flex flex-col gap-6" onSubmit={submitForm}>
-          <div className="flex justify-between items-center ">
+          <div className="flex flex-col md:flex-row justify-between items-center ">
             <label>Email</label>
             <input type="email" onChange={(e) => setEmail(e.target.value)} className="bg-gray-100 rounded p-1.5" placeholder="Email"/>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-between items-center">
             <label>Password</label>
             <input type="password" onChange={(e) => setPassword(e.target.value)} className="bg-gray-100 rounded p-1.5" placeholder="Password"/>
           </div>

@@ -51,7 +51,7 @@ export default function PostProfile({token} : any) {
         <div className='flex flex-col justify-center font-[Urbanist]'>
           <div className='flex flex-col justify-center items-center mt-10'>
             <h3 className='text-2xl font-bold'>{userDetail?.username}</h3>
-            <div className='flex gap-15 mt-5'>
+            <div className='flex-col md:flex-row flex gap-5 md:gap-15 mt-5'>
               <p><span className='text-gray-400'>Full Name : </span>{userDetail?.name}</p>
               <p><span className='text-gray-400'>Email : </span>{userDetail?.email}</p>
             </div>
@@ -82,7 +82,7 @@ export default function PostProfile({token} : any) {
                 </Link>
               ))}
             </div> : 
-            <div className='flex justify-center mt-5'>
+            <div className='flex flex-col justify-center items-center mt-5'>
               {userBlogs.map((e: any) => ( 
                 <Link to={`/blog/${e?.id}`} key={e?.id} className="w-[65%] hover:bg-gray-100 hover:shadow-xl p-4 rounded-2xl mb-2 cursor-pointer">
                   <h2 className="text-[25px] font-medium text-justify">{e.title}</h2>
