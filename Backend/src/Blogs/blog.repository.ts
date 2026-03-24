@@ -89,4 +89,38 @@ export class BlogRepository{
       this.logger.error('Error' + e)
     }
   }
+
+  async getFavByBlogId(blogId : number, userID : number){
+    try{
+      const blog = await this.prisma.favourite.findMany({
+        where : {
+          blogID : blogId,
+          userID : userID
+        }
+      })
+
+      return blog;
+    }
+    catch(e){
+      throw e;
+    }
+  }
+
+  async removeFavByBlogId(blogId : number, userID : number){
+    try{
+      const blog = await this.prisma.favourite.delete({
+        where:{
+          userID_blogID: {
+            userID: userID,
+            blogID: blogId
+          }
+        }
+      })
+
+      return "deleted";
+    }
+    catch(e){
+      throw e;
+    }
+  }
 }
