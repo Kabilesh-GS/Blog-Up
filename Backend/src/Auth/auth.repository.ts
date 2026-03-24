@@ -69,7 +69,7 @@ export class AuthRepository{
 
       if(!user) throw new BadRequestException("No such user");
 
-      if(await bcrypt.compare(user.password,info.password)) throw new BadRequestException("Incorrect Password");
+      if(await bcrypt.compare(info.password,user.password)) throw new BadRequestException("Incorrect Password");
 
       const role = user.userRole.map((u) => { return u.role.role})
       const payload = {

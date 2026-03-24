@@ -28,7 +28,7 @@ function App() {
     }
 
     fetchFun();
-  },[token,blogs])
+  },[token])
 
   return (
     <BrowserRouter>
