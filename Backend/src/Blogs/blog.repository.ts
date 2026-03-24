@@ -94,8 +94,8 @@ export class BlogRepository{
     try{
       const blog = await this.prisma.favourite.findMany({
         where : {
-          blogID : blogId,
-          userID : userID
+          blogID : Number(blogId),
+          userID : Number(userID)
         }
       })
 
@@ -111,8 +111,8 @@ export class BlogRepository{
       const blog = await this.prisma.favourite.delete({
         where:{
           userID_blogID: {
-            userID: userID,
-            blogID: blogId
+            userID: Number(userID),
+            blogID: Number(blogId)
           }
         }
       })
