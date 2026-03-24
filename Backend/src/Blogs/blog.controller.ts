@@ -50,8 +50,8 @@ export class BlogController{
   }
 
   @UseGuards(JwtAuthGuard)
-  @Delete('removeFavBlogByID/:blogID/:userID')
-  async removeFavByBlogId(@Param('blogID') blogID : number,@Param('userID') userID : number){
+  @Delete('addFav/:userID/:blogID')
+  async removeFavByBlogId(@Param('userID') userID : number,@Param('blogID') blogID : number){
     return await this.BlogSer.removeFavByBlogId(blogID,userID)
   }
 }

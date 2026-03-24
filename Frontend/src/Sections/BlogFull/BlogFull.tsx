@@ -25,18 +25,38 @@ export default function BlogFull({token} : prop) {
   const [blog,setBlog] = useState<Blog | null>(null);
   const [decoded, setDecoded] = useState<any>() 
   const [loading, setLoading] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    if (token) {
+      setDecoded(decodeJWT(token));
+    }
+  }, [token]);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      setDecoded(decodeJWT(token));
       setBlog(await getBlog(id));
       setLoading(false);
     }
-
     fetchData();
+  },[id])
 
-  },[id,token])
+  useEffect(()=>{
+    if (!decoded || !id) return;
+    const checkFav = async () => {
+      console.log(decoded.id);
+      const res = await fetch(`https://blog-up.onrender.com/blog/getFavBlogByID/${id}/${decoded.id}`,{
+        headers : {
+          'Authorization' : `Bearer ${token}`
+        }
+      })
+      const data = await res.json();
+      console.log(data);
+      setIsLiked(!!data)
+    }
+    checkFav()
+  },[decoded, id, token])
 
   const handleFav = async () => {
     if(!token){
@@ -63,7 +83,7 @@ export default function BlogFull({token} : prop) {
                   <h1 className='font-medium text-5xl'>{blog?.title}</h1>
                   <p className='mt-4 text-lg mt-6' style={{ whiteSpace: "pre-line" }}>{blog?.description?.replace(/\\n/g, "\n")}</p>
                 </div>
-                <div className='mt-15 mb-5'><FaRegHeart className='cursor-pointer' onClick={() => handleFav()}/></div>
+                <div className='mt-15 mb-5'>{isLiked ? <p>liked</p> : <FaRegHeart className='cursor-pointer' onClick={() => handleFav()}/>}</div>
               </div>
             </div>
           </div>) 
