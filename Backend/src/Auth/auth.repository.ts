@@ -47,7 +47,7 @@ export class AuthRepository{
     }
     catch(e){
       this.logger.error('Error' + e);
-      return {e};
+      throw {e};
     }
   }
 
@@ -106,7 +106,7 @@ export class AuthRepository{
     }
     catch(e){
       this.logger.error('Error' + e);
-      return e;
+      throw e;
     }
   }
 
@@ -119,7 +119,7 @@ export class AuthRepository{
     }
     catch(e){
       this.logger.error('Error' + e);
-      return e;
+      throw e;
     }
   }
 }
