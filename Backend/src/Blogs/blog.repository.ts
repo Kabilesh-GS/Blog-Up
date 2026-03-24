@@ -106,7 +106,7 @@ export class BlogRepository{
     }
   }
 
-  async removeFavByBlogId(blogId : number, userID : number){
+  async removeFavByBlogId(userID : number,blogId : number,){
     try{
       const blog = await this.prisma.favourite.delete({
         where:{

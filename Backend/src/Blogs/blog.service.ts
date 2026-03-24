@@ -36,7 +36,7 @@ export class BlogService{
     return await this.BlogRepo.getFavByBlogId(blogId,userID);
   }
 
-  async removeFavByBlogId(blogId : number, userID : number){
+  async removeFavByBlogId(userID : number,blogId : number){
     return await this.BlogRepo.removeFavByBlogId(blogId,userID);
   }
 }
