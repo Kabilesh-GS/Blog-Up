@@ -1,7 +1,7 @@
 import { useParams,useNavigate, Link } from 'react-router-dom';
 import { useEffect,useState } from 'react';
 import { getBlog,decodeJWT,addFav } from '../../Utils/auth';
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart,FaHeart  } from "react-icons/fa";
 import Loading from '../../Components/Loading/Loading';
 
 type Blog = {
@@ -45,15 +45,19 @@ export default function BlogFull({token} : prop) {
   useEffect(()=>{
     if (!decoded || !id) return;
     const checkFav = async () => {
-      console.log(decoded.id);
       const res = await fetch(`https://blog-up.onrender.com/blog/getFavBlogByID/${id}/${decoded.id}`,{
         headers : {
           'Authorization' : `Bearer ${token}`
         }
       })
       const data = await res.json();
-      console.log(data);
-      setIsLiked(!!data)
+
+      if(decoded.id == data?.[0]?.userID && id == data?.[0]?.blogID){
+        setIsLiked(true);
+      }
+      else{
+        setIsLiked(false);
+      }
     }
     checkFav()
   },[decoded, id, token])
@@ -63,8 +67,8 @@ export default function BlogFull({token} : prop) {
       navigate('/signin')
     }
     else{
-      console.log(decoded?.id + " " + id);
       addFav(decoded?.id, id, token);
+      setIsLiked(true);
     }
   }
 
@@ -83,7 +87,7 @@ export default function BlogFull({token} : prop) {
                   <h1 className='font-medium text-5xl'>{blog?.title}</h1>
                   <p className='mt-4 text-lg mt-6' style={{ whiteSpace: "pre-line" }}>{blog?.description?.replace(/\\n/g, "\n")}</p>
                 </div>
-                <div className='mt-15 mb-5'>{isLiked ? <p>liked</p> : <FaRegHeart className='cursor-pointer' onClick={() => handleFav()}/>}</div>
+                <div className='mt-15 mb-5'>{isLiked ? <FaHeart className='text-red-500'/> : <FaRegHeart className='cursor-pointer' onClick={() => handleFav()}/>}</div>
               </div>
             </div>
           </div>) 
