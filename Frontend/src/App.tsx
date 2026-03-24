@@ -4,7 +4,7 @@ import Loading from './Components/Loading/Loading'
 import NavBar from './Sections/NavBar/NavBar'
 import Home from './Sections/Home/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Profile from './Sections/Profile/Profile';
+// import Profile from './Sections/Profile/Profile';
 import Signup from './Sections/SignUp/Signup';
 import BlogFull from './Sections/BlogFull/BlogFull';
 import SignIn from './Sections/Signin/Signin';
