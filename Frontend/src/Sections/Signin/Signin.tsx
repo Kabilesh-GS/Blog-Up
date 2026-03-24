@@ -13,7 +13,7 @@ export default function SignIn({setToken} : Prop) {
 
   const submitForm = async (e : any) => {
     e.preventDefault();
-    const data = await fetch('http://localhost:3000/auth/login',{
+    const data = await fetch('https://blog-up.onrender.com/auth/login',{
       method : 'POST',
       headers : {
         'Content-Type': 'application/json'
@@ -25,6 +25,7 @@ export default function SignIn({setToken} : Prop) {
     })
 
     const returnData = await data.json()
+    console.log()
     localStorage.setItem('token', returnData.accessToken);
     setToken(returnData?.accessToken);
     navigate("/");

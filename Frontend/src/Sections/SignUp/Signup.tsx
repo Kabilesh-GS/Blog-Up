@@ -11,7 +11,7 @@ export default function Signup() {
   const submitForm = async (e : any) => {
     e.preventDefault();
     try{
-      await fetch('http://localhost:3000/auth/register',{
+      const data = await fetch('https://blog-up.onrender.com/auth/register',{
         method : 'POST',
         headers : {
           'Content-Type' : 'application/json'
@@ -23,10 +23,14 @@ export default function Signup() {
           password : password
         })
       })
+
+      console.log(await data.json())
     }
     catch(e){
       return e;
     }
+
+
 
     setEmail('');
     setName('');

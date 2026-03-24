@@ -22,21 +22,21 @@ export function isTokenExpired(exp: any): boolean {
 }
 
 export async function getUsers(userName : string | undefined){
-  const response = await fetch(`http://localhost:3000/getUser/${userName}`)
+  const response = await fetch(`https://blog-up.onrender.com/getUser/${userName}`)
   const data = await response.json();
 
   return data;
 }
 
 export async function getUserBlogs(userName : string | undefined){
-  const response = await fetch(`http://localhost:3000/getUserPost/${userName}`)
+  const response = await fetch(`https://blog-up.onrender.com/getUserPost/${userName}`)
   const data = await response.json();
 
   return data;
 }
 
 export async function getBlog(id : any){
-  const response = await fetch(`http://localhost:3000/blog/fullBlog/${id}`)
+  const response = await fetch(`https://blog-up.onrender.com/blog/fullBlog/${id}`)
   const data = await response.json();
 
   return data;
@@ -44,7 +44,7 @@ export async function getBlog(id : any){
 
 export async function addFav(userID : any, postID : any, token : any){
   try{
-    await fetch(`http://localhost:3000/blog/addFav/${userID}/${postID}`,{
+    await fetch(`https://blog-up.onrender.com/blog/addFav/${userID}/${postID}`,{
       method : 'POST',
       headers : {
         'Authorization' : `Bearer ${token}`

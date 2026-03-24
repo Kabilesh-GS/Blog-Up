@@ -21,7 +21,7 @@ function App() {
     setToken(localToken);
     const fetchFun = async () => {
       setLoading(true);
-      const data = await fetch("http://localhost:3000/blog/getPosts");
+      const data = await fetch("https://blog-up.onrender.com/blog/getPosts");
       const JSONData = await data.json();
       setBlogs(JSONData);
       setLoading(false);

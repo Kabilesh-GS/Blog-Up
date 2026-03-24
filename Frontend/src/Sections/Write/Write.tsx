@@ -14,13 +14,12 @@ export default function Write({token} : Props) {
   const [decoded, setDecoded] = useState<MyJwtPayload | null>(null);
 
   useEffect(() => {
-    if (!token) {
+    const payload = decodeJWT(token);
+    if (!payload?.exp || isTokenExpired(payload.exp)) {
+      navigation('/signin');
       return;
     }
-
-    const payload = decodeJWT(token);
-
-    if (!payload?.exp || isTokenExpired(payload.exp)) {
+    if (!token) {
       navigation('/signin');
       return;
     }
@@ -28,9 +27,10 @@ export default function Write({token} : Props) {
     setDecoded(payload);
   }, [token]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e : any) => {
+    e.preventDefault();
     try{
-      fetch(`http://localhost:3000/blog/addPost`,{
+      fetch(`https://blog-up.onrender.com/blog/addPost`,{
         method : 'POST',
         headers : {
           "Content-Type": "application/json",

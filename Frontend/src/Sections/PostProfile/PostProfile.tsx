@@ -32,7 +32,7 @@ export default function PostProfile({token} : any) {
         setFavBtn(true);
       }
 
-      const response = await fetch(`http://localhost:3000/blog/getFav/${decoded?.id}`);
+      const response = await fetch(`https://blog-up.onrender.com/blog/getFav/${decoded?.id}`);
       const data = await response.json();
       console.log(data);
       setFavBlogs(data);
