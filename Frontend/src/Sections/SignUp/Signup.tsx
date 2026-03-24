@@ -15,22 +15,10 @@ export default function Signup() {
   const submitForm = async (e : any) => {
     e.preventDefault();
 
-    if(name == null || name == ''){
-      setNameError(true);
-      return;
-    }
-    if(userName == null || userName == ''){
-      setUserNameError(true);
-      return;
-    }
-    if(email == null || email == ''){
-      setEmailError(true);
-      return;
-    }
-    if(password == null || password == ''){
-      setPasswordError(true);
-      return;
-    }
+    if (!name) return setNameError(true);
+    if (!userName) return setUserNameError(true);
+    if (!email) return setEmailError(true);
+    if (!password) return setPasswordError(true);
 
     try{
       const data = await fetch('https://blog-up.onrender.com/auth/register',{
@@ -45,20 +33,25 @@ export default function Signup() {
           password : password
         })
       })
+      const result = await data.json();
+      if (!data.ok) {
+        throw new Error(result.message);
+      }
 
-      console.log(await data.json())
+      console.log(data.status)
+
+      window.alert('account created')
+      console.log(result);
+
+      setEmail('');
+      setName('');
+      setPassword('');
+      setUserName('');
     }
-    catch(e){
-      return e;
+    catch(err :any){
+      console.log(err.message);
+      window.alert(err.message);
     }
-
-
-
-    setEmail('');
-    setName('');
-    setPassword('');
-    setUserName('');
-    window.alert('account created')
   }
 
   return (
