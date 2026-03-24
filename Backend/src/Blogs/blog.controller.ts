@@ -1,4 +1,4 @@
-import { Controller,Body,Post, UseGuards, Req, Get,Param, Logger } from "@nestjs/common";
+import { Controller,Body,Post, UseGuards, Req, Get,Param, Logger, Delete } from "@nestjs/common";
 import { BlogService } from "./blog.service";
 import { BlogDto } from "./DTO/blog.dto";
 import { JwtAuthGuard } from "src/Guards/jwt-auth.guard";
@@ -41,5 +41,17 @@ export class BlogController{
   async getFav(@Param('id') id : number){
     this.logger.log('Hit on get fav (controller)')
     return await this.BlogSer.getFav(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('getFavBlogByID/:blogID/:userID')
+  async getFavByBlogId(@Param('blogID') blogID : number,@Param('userID') userID : number){
+    return await this.BlogSer.getFavByBlogId(blogID,userID);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('removeFavBlogByID/:blogID/:userID')
+  async removeFavByBlogId(@Param('blogID') blogID : number,@Param('userID') userID : number){
+    return await this.BlogSer.removeFavByBlogId(blogID,userID)
   }
 }

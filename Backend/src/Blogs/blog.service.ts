@@ -31,4 +31,12 @@ export class BlogService{
     this.logger.log('Hit on get fav (service)')
     return await this.BlogRepo.getFav(id);
   }
+
+  async getFavByBlogId(blogId : number, userID : number){
+    return await this.BlogRepo.getFavByBlogId(blogId,userID);
+  }
+
+  async removeFavByBlogId(blogId : number, userID : number){
+    return await this.BlogRepo.removeFavByBlogId(blogId,userID);
+  }
 }
