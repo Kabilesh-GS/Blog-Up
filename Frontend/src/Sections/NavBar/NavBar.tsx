@@ -5,13 +5,10 @@ import { useEffect, useState } from 'react'
 import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { decodeJWT } from '../../Utils/auth';
+import { useAppSelector } from "../../Redux/hooks";
+import { setToken } from "../../Redux/Slice/authSlice";
 
-type Prop = {
-  token: any;
-  setToken : Function
-}
-
-export default function NavBar({ token, setToken }: Prop) {
+export default function NavBar() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [decoded, setDecoded] = useState<any>()
@@ -20,6 +17,8 @@ export default function NavBar({ token, setToken }: Prop) {
     setIsOpen(true);
   }
 
+  const token : any = useAppSelector((state) => state.auth.token);
+
   useEffect(() => {
     async function fetchDecode(){
       setDecoded(await decodeJWT(token))
@@ -27,10 +26,10 @@ export default function NavBar({ token, setToken }: Prop) {
     fetchDecode()
   },[token])
 
-  const hasToken = Boolean(token ?? localStorage.getItem('token'));
+  const hasToken = Boolean(token);
   return (
     <>
-      {isOpen && <NavBarPopUp closeSideBar={() => setIsOpen(false)} token={token} setToken={setToken}/>}
+      {isOpen && <NavBarPopUp closeSideBar={() => setIsOpen(false)} />}
       <div className='flex justify-around shadow-xl items-center bg-gray-200 py-3 sticky top-0'>
         <div>
           <img src={hamburger} className='w-[30px] cursor-pointer' onClick={() => openSideBar()}/>
