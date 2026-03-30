@@ -5,21 +5,22 @@ import { FaCircleUser } from "react-icons/fa6";
 import { TbLogin, TbLogout } from "react-icons/tb";
 import { Link ,useNavigate } from 'react-router-dom';
 import { decodeJWT } from '../../Utils/auth';
+import { useAppSelector, useAppDispatch } from "../../Redux/hooks";
+import { setToken } from "../../Redux/Slice/authSlice";
 
 type Props = {
   closeSideBar: () => void;
-  token: any;
-  setToken : any
 };
 
-export default function NavBarPopUp({ closeSideBar, token, setToken }: Props) {
+export default function NavBarPopUp({ closeSideBar }: Props) {
+  const token = useAppSelector((state) => state.auth.token);
+  const dispatch = useAppDispatch();
   const decoded = token ? decodeJWT(token) : null;
 
   const navigate = useNavigate();
 
   const handleSignOut = () => {
-    localStorage.removeItem('token');
-    setToken(null)
+    dispatch(setToken(null));
     navigate('/');
 
     console.log('inside handle signOut')

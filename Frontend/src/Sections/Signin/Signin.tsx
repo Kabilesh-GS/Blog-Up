@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
+import { useAppDispatch } from "../../Redux/hooks";
+import { setToken } from "../../Redux/Slice/authSlice";
 
-type Prop = {
-  setToken : any
-}
+export default function SignIn() {
 
-export default function SignIn({setToken} : Prop) {
+  const dispatch = useAppDispatch();
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
@@ -38,8 +38,7 @@ export default function SignIn({setToken} : Prop) {
 
     const returnData = await data.json()
     console.log()
-    localStorage.setItem('token', returnData.accessToken);
-    setToken(returnData?.accessToken);
+    dispatch(setToken(returnData?.accessToken));
     setPassError(false);
     setEmailError(false);
     navigate("/");
