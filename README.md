@@ -1,4 +1,4 @@
-# Blog-Up 📝
+# Blog-Up
 
 A full-stack blogging platform where you can write, share, and discover stories from the community.
 
@@ -6,16 +6,16 @@ A full-stack blogging platform where you can write, share, and discover stories 
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔐 **Auth** — Secure sign up & login
-- 🌍 **Discover** — Browse blogs from the community
-- ❤️ **Favorites** — Save blogs you love for later
-- ✍️ **Write & Publish** — Create and share your own posts
+- **Auth** — Secure sign up & login
+- **Discover** — Browse blogs from the community
+- **Favorites** — Save blogs you love for later
+- **Write & Publish** — Create and share your own posts
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 Blog-Up/
@@ -25,14 +25,12 @@ Blog-Up/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
 - Node.js v18+
 - npm
-
----
 
 ### 1. Clone the repo
 
@@ -40,8 +38,6 @@ Blog-Up/
 git clone https://github.com/Kabilesh-GS/Blog-Up.git
 cd Blog-Up
 ```
-
----
 
 ### 2. Backend Setup
 
@@ -67,8 +63,6 @@ npm run start
 
 > Backend runs at `http://localhost:3000`
 
----
-
 ### 3. Frontend Setup
 
 ```bash
@@ -81,7 +75,7 @@ npm start
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer     | Technology          |
 |-----------|---------------------|
@@ -92,8 +86,6 @@ npm start
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you'd like to change.
-
----
