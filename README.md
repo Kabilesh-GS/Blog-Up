@@ -1,28 +1,99 @@
-# Blog-Up
+# Blog-Up 📝
 
-A modern blogging platform. Create, share, and discover inspiring stories.
+A full-stack blogging platform where you can write, share, and discover stories from the community.
 
-## Features
+> Built with **React** (Frontend) + **NestJS** (Backend) + **Prisma** ORM
 
-- **Authentication** - Secure login and sign up to get started
-- **Discover Blogs** - Browse and explore blogs from the community
-- **Favorites** - Save your favorite blogs for later reading
-- **Write & Publish** - Share your thoughts with a built-in blog editor
+---
 
-## Getting Started
-### Backend Setup
-1. Navigate to the backend directory: `cd backend`
-2. Install dependencies: `npm install`
-3. Create a `.env` file with required environment variables
-4. Run `npx prisma migrate deploy`
-5. Run `npx prisma generate`
-6. Start the server: `npm run start`
+## ✨ Features
 
-The backend will run on `http://localhost:3000`
+- 🔐 **Auth** — Secure sign up & login
+- 🌍 **Discover** — Browse blogs from the community
+- ❤️ **Favorites** — Save blogs you love for later
+- ✍️ **Write & Publish** — Create and share your own posts
 
-### Frontend Setup
-1. Navigate to the frontend directory: `cd frontend`
-2. Install dependencies: `npm install`
-3. Start the development server: `npm start`
+---
 
-The frontend will run on `http://localhost:5173`
+## 🗂️ Project Structure
+
+```
+Blog-Up/
+├── Frontend/   # React app (Vite) — runs on port 5173
+└── Backend/    # NestJS API + Prisma — runs on port 3000
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js v18+
+- npm
+
+---
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/Kabilesh-GS/Blog-Up.git
+cd Blog-Up
+```
+
+---
+
+### 2. Backend Setup
+
+```bash
+cd Backend
+npm install
+```
+
+Create a `.env` file in the `Backend` folder and add your environment variables:
+
+```env
+DATABASE_URL="your_database_url_here"
+JWT_SECRET="your_jwt_secret_here"
+```
+
+Run database migrations and start the server:
+
+```bash
+npx prisma migrate deploy
+npx prisma generate
+npm run start
+```
+
+> Backend runs at `http://localhost:3000`
+
+---
+
+### 3. Frontend Setup
+
+```bash
+cd ../Frontend
+npm install
+npm start
+```
+
+> Frontend runs at `http://localhost:5173`
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer     | Technology          |
+|-----------|---------------------|
+| Frontend  | React, TypeScript, Vite |
+| Backend   | NestJS, TypeScript  |
+| Database  | Prisma ORM          |
+| Auth      | JWT                 |
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you'd like to change.
+
+---
