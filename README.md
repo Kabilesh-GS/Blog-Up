@@ -1,4 +1,4 @@
-# Blog-Up
+# ✏️ Blog-Up
 
 A full-stack blogging platform where you can write, share, and discover stories from the community.
 
