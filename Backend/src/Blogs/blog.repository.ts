@@ -123,4 +123,23 @@ export class BlogRepository{
       throw e;
     }
   }
+
+  async editBlog(BlogDTO : BlogDto, blogID : number){
+    try{
+      const blog = await this.prisma.blogs.update({
+        where : {
+          id : Number(blogID)
+        },
+        data : {
+          title : BlogDTO.title,
+          description : BlogDTO.description
+        }
+      })
+
+      return { message : "Edited", blog}    
+    }
+    catch(e){
+      this.logger.error('Error' + e);
+    }
+  }
 }

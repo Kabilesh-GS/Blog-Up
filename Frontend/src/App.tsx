@@ -12,6 +12,7 @@ import SignIn from './Sections/Signin/Signin';
 import PostProfile from './Sections/PostProfile/PostProfile';
 import Write from './Sections/Write/Write';
 import { setBlogs, setLoading } from "./Redux/Slice/blogSlice";
+import EditBlog from './Sections/EditBlog/EditBlog';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -40,6 +41,7 @@ function App() {
           {/* <Route path="/profile" element={<Profile token={token} />} /> */}
           <Route path="/signUp" element={<Signup/>} />
           <Route path="/blog/:id" element={<BlogFull token={token}/>} />
+          <Route path='/edit-blog/:id' element={<EditBlog/>} />
           <Route path='/signIn' element={<SignIn/>} />
           <Route path='/profile/:userName' element={<PostProfile token={token}/>} />
           <Route path='/write' element={<Write token={token}/>}/>

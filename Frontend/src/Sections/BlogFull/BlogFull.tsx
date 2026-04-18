@@ -2,6 +2,7 @@ import { useParams,useNavigate, Link } from 'react-router-dom';
 import { useEffect,useState } from 'react';
 import { getBlog,decodeJWT,addFav } from '../../Utils/auth';
 import { FaRegHeart,FaHeart  } from "react-icons/fa";
+import { FiEdit } from "react-icons/fi";
 import Loading from '../../Components/Loading/Loading';
 
 type Blog = {
@@ -32,6 +33,14 @@ export default function BlogFull({token} : prop) {
       setDecoded(decodeJWT(token));
     }
   }, [token]);
+
+  // console.log(decoded)
+
+  // if (blog?.user?.userName == decoded?.userName) {
+  //   console.log("same user")
+  // } else {
+  //   console.log("different user")
+  // }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,7 +96,10 @@ export default function BlogFull({token} : prop) {
                   <h1 className='font-medium text-5xl'>{blog?.title}</h1>
                   <p className='mt-4 text-lg mt-6' style={{ whiteSpace: "pre-line" }}>{blog?.description?.replace(/\\n/g, "\n")}</p>
                 </div>
-                <div className='mt-15 mb-5'>{isLiked ? <FaHeart className='text-red-500'/> : <FaRegHeart className='cursor-pointer' onClick={() => handleFav()}/>}</div>
+                <div className='flex mt-15 mb-5 gap-5'>
+                  <div className=''>{isLiked ? <FaHeart className='text-red-500'/> : <FaRegHeart className='cursor-pointer' onClick={() => handleFav()}/>}</div>
+                  <div>{blog?.user?.userName == decoded?.userName ? <Link to={`/edit-blog/${blog?.id}`}><FiEdit /></Link> : <></>}</div>
+                </div>
               </div>
             </div>
           </div>) 
