@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { useParams } from "react-router-dom"
-import { getBlog } from "../../Utils/auth";
+import { editBlog, getBlog } from "../../Utils/auth";
 import Loading from "../../Components/Loading/Loading";
 
 export default function EditBlog() {
   const { id } = useParams();
   const [oldBlog,setOldBlog] = useState<any>();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,9 +20,24 @@ export default function EditBlog() {
     fetchData();
   },[id])
 
+  const edit = async (e: any) => {
+    e.preventDefault();
+    const title = (document.getElementsByTagName('input')[0] as HTMLInputElement).value;
+    const description = (document.getElementsByTagName('textarea')[0] as HTMLTextAreaElement).value;
+
+    const blogDTO = {
+      title,
+      description
+    }
+
+    await editBlog(blogDTO, id, localStorage.getItem('token'));
+
+    navigate(`/blog/${id}`);
+  }
+
   return (
     loading ? <Loading /> :
-      <form className="font-[Urbanist] mt-15" onSubmit={() => {}}>
+      <form className="font-[Urbanist] mt-15" onSubmit={edit}>
         <div className="flex justify-center">      
           <div className="flex flex-col w-[85%] md:w-[65%]">
             <label className="text-xl">Title</label>

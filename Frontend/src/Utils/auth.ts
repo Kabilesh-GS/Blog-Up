@@ -42,6 +42,25 @@ export async function getBlog(id : any){
   return data;
 }
 
+export async function editBlog(blogDTO : any, blogID : any, token : any){
+  try{
+    const response = await fetch(`https://blog-up.onrender.com/blog/editBlog/${blogID}`,{
+      method : 'POST',
+      headers : {
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${token}`
+      },
+      body : JSON.stringify(blogDTO)
+    })
+
+    const data = await response.json();
+    return data;
+  }
+  catch(err){
+    return err;
+  }
+}
+
 export async function addFav(userID : any, postID : any, token : any){
   try{
     await fetch(`https://blog-up.onrender.com/blog/addFav/${userID}/${postID}`,{
