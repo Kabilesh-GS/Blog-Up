@@ -54,4 +54,12 @@ export class BlogController{
   async removeFavByBlogId(@Param('userID') userID : number,@Param('blogID') blogID : number){
     return await this.BlogSer.removeFavByBlogId(blogID,userID)
   }
+
+  @UseGuards(JwtAuthGuard,RolesGuard)
+  @Role('USER','ADMIN')
+  @Post('editBlog/:blogID')
+  async editBlog(@Body() BlogDTO : BlogDto, @Param('blogID') blogID : number){
+    this.logger.log('Hit on edit Blog (controller)');
+    return await this.BlogSer.editBlog(BlogDTO, blogID);
+  }
 }
