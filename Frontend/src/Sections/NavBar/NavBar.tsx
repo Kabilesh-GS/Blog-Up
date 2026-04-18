@@ -6,7 +6,6 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { decodeJWT } from '../../Utils/auth';
 import { useAppSelector } from "../../Redux/hooks";
-import { setToken } from "../../Redux/Slice/authSlice";
 
 export default function NavBar() {
 
